@@ -50,18 +50,24 @@ LinearRegression()을 사용하여 학습합니다.
 https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
 """
 
+
+
 lrmodel = None
 
 # Req 1-2-2. 학습된 가중치 값 저장
 beta_0 = None
 beta_1 = None
 beta_2 = None
+
+# 절편
 beta_3 = None
 
 print("Scikit-learn의 결과물")
 print("beta_0: %f" % beta_0)
 print("beta_1: %f" % beta_1)
 print("beta_2: %f" % beta_2)
+
+
 print("beta_3: %f" % beta_3)
 
 # Req. 1-3-1.

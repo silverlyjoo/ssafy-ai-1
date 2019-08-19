@@ -23,6 +23,7 @@ for (idx, line) in enumerate(rdr):
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y)
 
 
+
 reg = LinearRegression().fit(X_train, Y_train)
 
 print('coef', reg.coef_)
