@@ -1,4 +1,5 @@
 import numpy as np
+
 import csv
 import pickle
 
@@ -16,12 +17,28 @@ X는 TV, Radio, Newspaper column 에 해당하는 데이터를 저장해야 합�
 Y는 Sales column 에 해당하는 데이터를 저장해야 합니다.
 """
 
+
+
+
+
 # Req 1-1-1. advertising.csv 데이터 읽고 저장
-X = []
-Y = []
+X = np.zeros((200,3))
+Y = np.zeros((200,))
+
+f = open('advertising.csv', 'r', encoding='utf-8')
+rdr = csv.reader(f)
+for (idx, line) in enumerate(rdr):
+    if idx == 0:
+        continue
+    X[idx-1][0] = float(line[1])
+    X[idx-1][1] = float(line[2])
+    X[idx-1][2] = float(line[3])
+    Y[idx-1] = float(line[4])
 
 # Req 1-1-2. 학습용 데이터와 테스트용 데이터로 분리합니다.
-X_train, X_test, Y_train, Y_test = train_test_split(None)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y)
+
+print(X_train)
 
 """
 Req 1-2-1.
