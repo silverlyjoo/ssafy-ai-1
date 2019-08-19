@@ -38,7 +38,7 @@ for (idx, line) in enumerate(rdr):
 # Req 1-1-2. 학습용 데이터와 테스트용 데이터로 분리합니다.
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y)
 
-print(X_train)
+# print(X_train)
 
 """
 Req 1-2-1.
@@ -52,12 +52,12 @@ https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearReg
 
 
 
-lrmodel = None
+lrmodel = LinearRegression().fit(X_train, Y_train)
 
 # Req 1-2-2. 학습된 가중치 값 저장
-beta_0 = None
-beta_1 = None
-beta_2 = None
+beta_0 = lrmodel.coef_[0]
+beta_1 = lrmodel.coef_[1]
+beta_2 = lrmodel.coef_[2]
 
 # 절편
 beta_3 = None
