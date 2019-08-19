@@ -20,6 +20,7 @@ for (idx, line) in enumerate(rdr):
     X[idx-1][1] = float(line[2])
     X[idx-1][2] = float(line[3])
     Y[idx-1] = float(line[4])
+    
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y)
 
 
