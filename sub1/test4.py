@@ -1,5 +1,11 @@
 import numpy as np 
 
-L = np.eye(3)
+ar = np.array([[1, 2, 3]])
 
-print(L)
+print(ar.shape)
+print(ar.T.shape)
+
+A = np.array([[1, 2, 3]])
+
+print(A)
+print(A.T)
