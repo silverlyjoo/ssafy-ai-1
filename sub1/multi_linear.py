@@ -98,7 +98,7 @@ print("TV: {}, Radio: {}, Newspaper: {} 판매량: {}".format(
    X_test[3][0],X_test[3][1],X_test[3][2],Y_test[3]))
 
 print("예상 판매량: {}".format(expected_sales(
-    float(X_test[3][1]),float(X_test[3][1]),float(X_test[3][2]), beta_0, beta_1, beta_2, beta_3)))
+    float(X_test[3][0]),float(X_test[3][1]),float(X_test[3][2]), beta_0, beta_1, beta_2, beta_3)))
 
 """
 Req. 1-5. pickle로 lrmodel 데이터 저장
@@ -150,7 +150,7 @@ def N_LinearRegression(X, Y, iters):
         pred = prediction(X,beta_x,beta_3)
         error =  pred - Y
         #gradient_beta함수를 통하여 델타값들을 업데이트 합니다.
-        beta_x_delta, beta_3_delta = gradient_beta(X,error,learning_rate, beta_3)
+        beta_x_delta, beta_3_delta = gradient_beta(X,error,learning_rate)
         beta_x -= beta_x_delta
         beta_3 -= beta_3_delta
 
@@ -175,7 +175,7 @@ def prediction(X, w, b):
     beta값에 해당되는 gradient값을 계산하고 learning rate를 곱하여 출력합니다.
     """
 
-def gradient_beta(X,error,lr, beta_3):
+def gradient_beta(X,error,lr):
     # beta_x를 업데이트하는 규칙을 정의한다.
     beta_x_delta =  lr/len(X) * np.sum(X * ( error ), axis=0 )
     # beta_3를 업데이트하는 규칙을 정의한다.
