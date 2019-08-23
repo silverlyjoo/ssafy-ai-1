@@ -28,12 +28,12 @@ Y = np.zeros((200,))
 f = open('advertising.csv', 'r', encoding='utf-8')
 rdr = csv.reader(f)
 for (idx, line) in enumerate(rdr):
-    if idx == 0:
-        continue
-    X[idx-1][0] = float(line[1])
-    X[idx-1][1] = float(line[2])
-    X[idx-1][2] = float(line[3])
-    Y[idx-1] = float(line[4])
+   if idx == 0:
+      continue
+   X[idx-1][0] = float(line[1])
+   X[idx-1][1] = float(line[2])
+   X[idx-1][2] = float(line[3])
+   Y[idx-1] = float(line[4])
 
 # Req 1-1-2. 학습용 데이터와 테스트용 데이터로 분리합니다.
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y)
@@ -133,28 +133,28 @@ Linear Regression 학습을 위한 알고리즘입니다.
 
 def N_LinearRegression(X, Y, iters):
 
-    """
-    초기값 beta_0, beta_1, beta_2, beta_3 = 0
-    여러가지 초기값을 실험해봅니다..
-    초기값에 따라 iters간의 관계를 확인 가능합니다.
-    """
+   """
+   초기값 beta_0, beta_1, beta_2, beta_3 = 0
+   여러가지 초기값을 실험해봅니다..
+   초기값에 따라 iters간의 관계를 확인 가능합니다.
+   """
 
-    beta_x = np.array([1.0, 1.0, 1.0])
-    beta_3 = 3
+   beta_x = np.array([1.0, 1.0, 1.0])
+   beta_3 = 3
 
-    #행렬 계산을 위하여 Y데이터의 사이즈를 (len(Y),1)로 저장합니다.
-    Y=Y.reshape(-1,1)
+   #행렬 계산을 위하여 Y데이터의 사이즈를 (len(Y),1)로 저장합니다.
+   Y=Y.reshape(-1,1)
 
-    for i in range(iters):
-        #실제 값 y와 예측 값(prediction()함수를 사용)의 차이를 계산하여 error를 정의합니다.
-        pred = prediction(X,beta_x,beta_3)
-        error =  pred - Y
-        #gradient_beta함수를 통하여 델타값들을 업데이트 합니다.
-        beta_x_delta, beta_3_delta = gradient_beta(X,error,learning_rate)
-        beta_x -= beta_x_delta
-        beta_3 -= beta_3_delta
+   for i in range(iters):
+      #실제 값 y와 예측 값(prediction()함수를 사용)의 차이를 계산하여 error를 정의합니다.
+      pred = prediction(X,beta_x,beta_3)
+      error =  pred - Y
+      #gradient_beta함수를 통하여 델타값들을 업데이트 합니다.
+      beta_x_delta, beta_3_delta = gradient_beta(X,error,learning_rate)
+      beta_x -= beta_x_delta
+      beta_3 -= beta_3_delta
 
-    return beta_x, beta_3
+   return beta_x, beta_3
 
 """
 Req. 3-1-2.
@@ -164,25 +164,24 @@ X행렬의 크기와 beta의 행렬 크기를 맞추어 계산합니다.
 """
     
 def prediction(X, w, b):
-    # 예측 값을 계산하는 식을 만든다.
-    equation = X@w + b
-    return equation.reshape(-1, 1)
-    
+   # 예측 값을 계산하는 식을 만든다.
+   equation = X@w + b
+   return equation.reshape(-1, 1)
+   
 
-    """
-    Req. 3-1-3.
-    gradient_beta():
-    beta값에 해당되는 gradient값을 계산하고 learning rate를 곱하여 출력합니다.
-    """
+   """
+   Req. 3-1-3.
+   gradient_beta():
+   beta값에 해당되는 gradient값을 계산하고 learning rate를 곱하여 출력합니다.
+   """
 
 def gradient_beta(X,error,lr):
-    # beta_x를 업데이트하는 규칙을 정의한다.
-    beta_x_delta =  lr/len(X) * np.sum(X * ( error ), axis=0 )
-    # beta_3를 업데이트하는 규칙을 정의한다.
+   # beta_x를 업데이트하는 규칙을 정의한다.
+   beta_x_delta =  lr/len(X) * np.sum(X * ( error ), axis=0 )
+   # beta_3를 업데이트하는 규칙을 정의한다.
 
-    beta_3_delta = lr/len(X) * np.sum(error, axis=0)
-    
-    return beta_x_delta, beta_3_delta
+   beta_3_delta = (lr/len(X) * np.sum(error, axis=0))[0]
+   return beta_x_delta, beta_3_delta
 
 
 # N_LinearRegression 학습 파트
